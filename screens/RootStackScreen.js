@@ -15,7 +15,7 @@ const RootStackScreen = () => (
         <RootStack.Navigator>
             <RootStack.Screen  name='Social Alerte' component={SplashScreen} />
             <RootStack.Screen  name='Connexion' component={SignInScreen} />
-            <RootStack.Screen  name='SignUpScreen' component={SignUpScreen} />
+            <RootStack.Screen  name='Inscription' component={SignUpScreen} />
         </RootStack.Navigator>
     </NavigationContainer>
 )

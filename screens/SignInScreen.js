@@ -1,4 +1,4 @@
-import { Dimensions, TouchableOpacity, TextInput, Text, StyleSheet, View, Platform } from 'react-native'
+import { Dimensions, StatusBar, TouchableOpacity, TextInput, Text, StyleSheet, View, Platform } from 'react-native'
 import React from 'react';
 
 import * as Animatable from 'react-native-animatable'
@@ -7,13 +7,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Feather from 'react-native-vector-icons/Feather'
 
-function SignInScreen(){
+function SignInScreen({navigation}){
     return (
       <View style={styles.container}  >
+        <StatusBar backgroundColor="#009387" barStyle='light-content' />
         <View style={styles.header} >
-          <Text style={styles.text_header} >Bienvenue!</Text>
+          <Text style={styles.text_header} >Bienvenue a Social Alerte!</Text>
         </View>
-        <View style={styles.footer} >
+        <Animatable.View animation="fadeInUpBig" style={styles.footer} >
           <Text style={styles.text_footer} >Numero</Text>
           <View style={styles.action} >
               <FontAwesome 
@@ -23,8 +24,8 @@ function SignInScreen(){
               />
               <TextInput placeholder='votre contact' autoCapitalize='none'  style={styles.textInput} />
               <Feather 
-                name='check-circle'
-                color='green'
+                name= "check-circle"
+                color="green"
                 size={2}
               />
           </View>
@@ -38,12 +39,35 @@ function SignInScreen(){
               />
               <TextInput placeholder='votre password' secureTextEntry={true} autoCapitalize='none'  style={styles.textInput} />
               <Feather 
-                name='eye-off'
-                color='grey'
+                name="eye-off"
+                color="grey"
                 size={2}
               />
           </View>
-        </View>
+          <View style={styles.button} >
+              <LinearGradient
+                colors={["#08d4c4","#01ab9d"]}
+                style={styles.signIn}
+              >
+                  <Text style={[styles.textSign, {
+                    color:"#fff"
+                  }]} >Se connecter</Text>
+              </LinearGradient>
+
+              <TouchableOpacity
+                onPress={()=>{navigation.navigate("Inscription")}}
+                style={[styles.signIn, {
+                  borderColor:'#009387',
+                  borderWidth:1,
+                  marginTop:15
+                }]}
+              >
+                  <Text style={[styles.textSign,{
+                    color:"#009387"
+                  }]} >S'inscrire</Text>
+              </TouchableOpacity>
+          </View>
+        </Animatable.View>
       </View>
     )
 }
@@ -71,7 +95,7 @@ const styles = StyleSheet.create({
   text_header:{
     color:'#fff',
     fontWeight:"bold",
-    fontSize:18
+    fontSize:30
   },
   text_footer:{
     color:"#05375a",
@@ -103,6 +127,6 @@ const styles = StyleSheet.create({
   },
   textSign:{
     fontSize:18,
-    fontWeight:"bold"
+    fontWeight:"bold",
   }
 })
